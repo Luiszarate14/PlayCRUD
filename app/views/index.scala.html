@@ -1,20 +1,41 @@
-@*
- * This template takes a single argument, a String containing a
- * message to display.
- *@
-@(message: String)
 
-@*
- * Call the `main` template with two arguments. The first
- * argument is a `String` with the title of the page, the second
- * argument is an `Html` object containing the body of the page.
- *@
-@main("Welcome to Play") {
+@(message: String,  searchForm: Form[Pregunta])
+@import helper._
 
-    @*
-     * Get an `Html` object by calling the built-in Play welcome
-     * template and passing a `String` message.
-     *@
-    @play20.welcome(message, style = "Java")
+@main(message) {
+
+    @form(routes.HomeController.post(), 'class -> "form") {
+
+      @if(searchForm.hasGlobalErrors) {
+          <div class="alert alert-danger">
+            @searchForm.globalError.message
+          </div>
+      }
+
+      <fieldset>
+          @inputText(
+            searchForm("texto"),
+            '_label -> "Texto de preguta",
+            '_help -> "required",
+            'class -> "form-control"
+          )
+          @textarea(searchForm("textoAyuda"),
+             '_help -> "Un poco de ayuda nunca es malo",
+            'class -> "form-control")
+          @inputText(searchForm("tipo"),
+            '_help -> "required",
+            'class -> "form-control"
+            )
+          
+          @input(searchForm("requerida")) { (id, name, value, args) =>
+                <input type="checkbox" name="@name" id="@id" @toHtmlArgs(args)>
+            }
+
+      </fieldset>
+
+      <div class="form-actions text-center">
+          <input type="submit" class="btn btn-success" value="guardar") >
+      </div>
+  }
 
 }

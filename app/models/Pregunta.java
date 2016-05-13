@@ -8,6 +8,9 @@
  *
  * @author usuario
  */
+
+package models;
+
 import java.util.*;
 import javax.persistence.*;
 
@@ -29,10 +32,7 @@ public class Pregunta extends Model{
     @Constraints.Required
     public String tipo;
 
-    @Constraints.Required
     public boolean requerida;
-
-    @Constraints.Required
     public String textoAyuda;
     
     public static Finder<Long, Pregunta> find = new Finder<Long, Pregunta>(Pregunta.class);
