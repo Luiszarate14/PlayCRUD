@@ -1,6 +1,7 @@
 package controllers;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import javax.inject.Inject;
 import play.data.Form;
@@ -50,4 +51,14 @@ public class HomeController extends Controller {
         return ok(index.render("Recepción de formulario correcto.", pregForm));
     }
 
+     public Result listaPregunta() {
+        List<Pregunta> pregs = Pregunta.find.all();
+        
+        return ok(listaPregunta.render("Listado de preguntas", pregs));
+    }   
+     
+    public Result edit(Pregunta instancia) {
+        Form<Pregunta> pregForm = formFactory.form(Pregunta.class).fill(instancia);
+        return ok(index.render("Formulario de pregunta", pregForm));
+    }
 }
