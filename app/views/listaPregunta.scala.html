@@ -1,0 +1,14 @@
+@(message: String,  pregs: List[Pregunta])
+@import helper._
+
+
+@main(message) {
+    <h1> Lista de preguntas </h1>
+
+<ul>
+@for(preg <- pregs) {
+  <li>@preg.texto</li>
+}
+</ul>
+
+}
