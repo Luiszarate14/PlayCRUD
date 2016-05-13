@@ -13,3 +13,4 @@ target
 tmp
 dist
 .cache
+.classpath_nb

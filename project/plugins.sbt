@@ -1,5 +1,7 @@
 // The Play plugin
-addSbtPlugin("com.typesafe.play" % "sbt-plugin" % "2.5.3")
+addSbtPlugin("com.typesafe.play" % "sbt-plugin" % "2.5.2")
+addSbtPlugin("com.typesafe.sbt" % "sbt-play-ebean" % "3.0.0")
+addSbtPlugin("org.netbeans.nbsbt" % "nbsbt-plugin" % "1.1.4")
 
 // Web plugins
 addSbtPlugin("com.typesafe.sbt" % "sbt-coffeescript" % "1.0.0")
