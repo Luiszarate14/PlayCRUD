@@ -34,10 +34,10 @@ public class HomeController extends Controller {
             return badRequest(index.render("Encontramos errores", pregForm));
         } else {
         Map<String, String> values = pregForm.data();
-            System.err.println("VOY");
-         Pregunta preg =  new Pregunta();
+            System.out.println(values);
+        Pregunta preg =  new Pregunta();
         boolean requerida=false;
-        if(values.get("requerida").equalsIgnoreCase("true")){
+        if(values.containsKey("requerida") && values.get("requerida").equalsIgnoreCase("true")){
             requerida=true;
         }
         preg.texto=values.get("texto");
