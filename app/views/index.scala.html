@@ -1,10 +1,9 @@
-
-@(message: String,  searchForm: Form[Pregunta])
+@(message: String,  searchForm: Form[Pregunta], postUrl: play.api.mvc.Call)
 @import helper._
 
 @main(message) {
 
-    @form(routes.HomeController.post(), 'class -> "form") {
+    @form(postUrl, 'class -> "form") {
 
       @if(searchForm.hasGlobalErrors) {
           <div class="alert alert-danger">

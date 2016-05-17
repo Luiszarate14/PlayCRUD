@@ -3,12 +3,12 @@
 # ~~~~
 
 # An example controller showing a sample home page
-GET     /                           controllers.HomeController.index
-GET     /preguntas                  controllers.HomeController.listaPregunta
-POST     /                          controllers.HomeController.post
+GET     /                           controllers.HomeController.index()
+GET     /preguntas                  controllers.HomeController.listaPregunta()
+POST     /                          controllers.HomeController.post()
 
-GET     /editarPregunta/:instancia          controllers.HomeController.editar(instancia: javaguide.binder.models.Pregunta)
-
+GET     /editarPregunta/:id          controllers.HomeController.editar(id: Long)
+POST     /editarPregunta/:id         controllers.HomeController.editarPost(id: Long)
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
 
