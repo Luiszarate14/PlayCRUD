@@ -3,7 +3,7 @@
 @import helper._
 
 @main(message) {
-
+<div class="alert"> @message </div>
     @form(routes.HomeController.post(), 'class -> "form") {
 
       @if(searchForm.hasGlobalErrors) {
@@ -13,22 +13,35 @@
       }
 
       <fieldset>
-          @inputText(
+          
+          <div class="row">
+            <div class="col-md-4"> @inputText(
             searchForm("texto"),
-            '_label -> "Texto de preguta",
+            '_label -> "Texto de pregunta",
             '_help -> "required",
             'class -> "form-control"
-          )
-          @textarea(searchForm("textoAyuda"),
+          )</div>
+              <div class="col-md-4">
+                            @textarea(searchForm("textoAyuda"),
              '_help -> "Un poco de ayuda nunca es malo",
             'class -> "form-control")
+              </div>
+
+          </div>
+
+
+
           @inputText(searchForm("tipo"),
             '_help -> "required",
             'class -> "form-control"
             )
           
           @input(searchForm("requerida")) { (id, name, value, args) =>
-                <input type="checkbox" name="@name" id="@id" @toHtmlArgs(args)>
+                
+                <select name="@name" id="@id" @toHtmlArgs(args)>
+  <option value="true" selected>Sí</option>
+  <option value="false">No</option>
+                </select>
             }
 
       </fieldset>

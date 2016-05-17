@@ -25,7 +25,7 @@ public class HomeController extends Controller {
     public Result index() {
         Form<Pregunta> pregForm = formFactory.form(Pregunta.class);
         
-        return ok(index.render("Formulario de pregunta", pregForm));
+         return ok(index.render("Formulario de pregunta", pregForm));
     }
     
     public Result post() {
@@ -33,8 +33,8 @@ public class HomeController extends Controller {
         if (pregForm.hasErrors()) {
             return badRequest(index.render("Encontramos errores", pregForm));
         } else {
+        /**               
         Map<String, String> values = pregForm.data();
-            System.out.println(values);
         Pregunta preg =  new Pregunta();
         boolean requerida=false;
         if(values.containsKey("requerida") && values.get("requerida").equalsIgnoreCase("true")){
@@ -46,6 +46,9 @@ public class HomeController extends Controller {
         preg.textoAyuda=values.get("textoAyuda");
         preg.save();
         pregForm = formFactory.form(Pregunta.class);
+        **/
+        Pregunta preg = pregForm.get();
+        preg.save();
         }
         return ok(index.render("Recepción de formulario correcto.", pregForm));
     }
