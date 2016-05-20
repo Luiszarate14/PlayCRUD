@@ -16,6 +16,8 @@ GET     /listarPreguntas           controllers.HomeController.listarPregunta()
 GET     /editarPregunta/:id        controllers.HomeController.editarPreguntaGet(id: Long)
 POST     /editarPregunta/:id       controllers.HomeController.editarPreguntaPost(id: Long)
 
+#Eliminar 
+GET     /eliminarPregunta/:id       controllers.HomeController.EliminarPregunta(id: Long)
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
 

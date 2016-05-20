@@ -85,5 +85,11 @@ public class HomeController extends Controller {
         instancia.save();
         return redirect(routes.HomeController.listarPregunta());
     }
+    
+    public Result EliminarPregunta(Long id) {
+        Pregunta instancia = Pregunta.find.byId(id);
+        instancia.delete();
+        return redirect(routes.HomeController.listarPregunta());
+    }    
 
 }
