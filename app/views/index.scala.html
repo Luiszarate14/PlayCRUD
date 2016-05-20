@@ -1,40 +1,11 @@
-@(message: String,  searchForm: Form[Pregunta], postUrl: play.api.mvc.Call)
-@import helper._
+@(message: String )
+
 
 @main(message) {
-
-    @form(postUrl, 'class -> "form") {
-
-      @if(searchForm.hasGlobalErrors) {
-          <div class="alert alert-danger">
-            @searchForm.globalError.message
-          </div>
-      }
-
-      <fieldset>
-          @inputText(
-            searchForm("texto"),
-            '_label -> "Texto de preguta",
-            '_help -> "required",
-            'class -> "form-control"
-          )
-          @textarea(searchForm("textoAyuda"),
-             '_help -> "Un poco de ayuda nunca es malo",
-            'class -> "form-control")
-          @inputText(searchForm("tipo"),
-            '_help -> "required",
-            'class -> "form-control"
-            )
-          
-          @input(searchForm("requerida")) { (id, name, value, args) =>
-                <input type="checkbox" name="@name" id="@id" @toHtmlArgs(args)>
-            }
-
-      </fieldset>
-
-      <div class="form-actions text-center">
-          <input type="submit" class="btn btn-success" value="guardar") >
-      </div>
-  }
-
+<div class="container">
+   <div class="btn-group" role="group" aria-label="...">
+    <a href="@routes.HomeController.listarPregunta()" class="btn btn-default">Listar</a>
+    <a href="@routes.HomeController.crearPreguntaGet()" class="btn btn-success">crear</a>
+  </div>
+</div>
 }
