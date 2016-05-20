@@ -35,7 +35,7 @@ public class HomeController extends Controller {
         Form<Pregunta> pregForm = formFactory.form(Pregunta.class);
         return ok(crear.render("Formulario de pregunta",
                 pregForm,
-                routes.HomeController.listarPregunta()));
+                routes.HomeController.crearPreguntaPost()));
     }
 
     public Result crearPreguntaPost() {

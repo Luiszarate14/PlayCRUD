@@ -12,8 +12,23 @@ create table pregunta (
   constraint pk_pregunta primary key (id)
 );
 
+create table respuesta (
+  id                            bigint auto_increment not null,
+  texto                         varchar(255),
+  pregunta_id                   bigint,
+  constraint pk_respuesta primary key (id)
+);
+
+alter table respuesta add constraint fk_respuesta_pregunta_id foreign key (pregunta_id) references pregunta (id) on delete restrict on update restrict;
+create index ix_respuesta_pregunta_id on respuesta (pregunta_id);
+
 
 # --- !Downs
 
+alter table respuesta drop foreign key fk_respuesta_pregunta_id;
+drop index ix_respuesta_pregunta_id on respuesta;
+
 drop table if exists pregunta;
+
+drop table if exists respuesta;
 

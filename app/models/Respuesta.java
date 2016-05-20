@@ -3,14 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-/**
- *
- * @author usuario
- */
-
 package models;
-
 import java.util.*;
 import javax.persistence.*;
 
@@ -20,7 +13,7 @@ import play.data.validation.*;
 
 
 @Entity
-public class Pregunta extends Model {
+public class Respuesta {
 
     @Id
     @Constraints.Min(10)
@@ -30,10 +23,10 @@ public class Pregunta extends Model {
     public String texto;
     
     @Constraints.Required
-    public String tipo;
-
-    public boolean requerida;
-    public String textoAyuda;
+    @ManyToOne()
+    Pregunta pregunta;
     
-    public static Finder<Long, Pregunta> find = new Finder<Long, Pregunta>(Pregunta.class);
+    public static Model.Finder<Long, Respuesta> find = new 
+                                 Model.Finder<Long, Respuesta>(Respuesta.class);
+    
 }
