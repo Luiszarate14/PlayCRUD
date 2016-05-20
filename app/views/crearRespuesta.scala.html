@@ -1,0 +1,41 @@
+@(message: String,  RespuestaForm: Form[Respuesta], postUrl: play.api.mvc.Call)
+@import helper._
+
+@main(message) {
+@form(postUrl, 'class -> "form") {
+    @if(RespuestaForm.hasGlobalErrors) {
+        <div class="alert alert-danger">
+            @RespuestaForm.globalError.message
+        </div>
+    }
+
+    <fieldset>
+
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3"> @inputText(
+                RespuestaForm("texto"),
+                '_label -> "Texto de pregunta",
+                '_help -> "required",
+                'class -> "form-control"
+                )
+            </div>
+            <div class="col-md-6 col-md-offset-3">
+                  @select(
+                    RespuestaForm("pregunta.id"), 
+                    options(Pregunta.preguntas),
+                    '_label -> "Pregunta", 
+                    'class -> "form-control")
+    
+            </div>
+            
+        </div>
+
+
+    </fieldset>
+
+    <div class="form-actions text-center">
+        <input type="submit" class="btn btn-success" value="guardar") >
+    </div>
+    }
+
+}

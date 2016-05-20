@@ -9,6 +9,10 @@ GET     /                          controllers.HomeController.index()
 GET     /crearPregunta             controllers.HomeController.crearPreguntaGet()
 POST    /crearPregunta             controllers.HomeController.crearPreguntaPost()
 
+GET     /crearRespuesta            controllers.RespuestaController.crearRespuestaGet()
+POST    /crearRespuesta            controllers.RespuestaController.crearRespuestaPost()
+
+
 #Listar
 GET     /listarPreguntas           controllers.HomeController.listarPregunta()
 

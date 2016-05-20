@@ -2,10 +2,16 @@
 
 @main(message) {
 <div class="container">
+    <h1> Pregunta </h1>
    <div class="btn-group" role="group" aria-label="...">
     <a href="@routes.HomeController.listarPregunta()" class="btn btn-default">Listar</a>
     <a href="@routes.HomeController.crearPreguntaGet()" class="btn btn-success">crear</a>
   </div>
+    
+    <h1>Respuesta</h1>
+    <a href="@routes.RespuestaController.crearRespuestaGet()" class="btn btn-success">crear</a>
+
+    
 </div>
 }
 

@@ -23,7 +23,7 @@ import play.data.validation.*;
 public class Pregunta extends Model {
 
     @Id
-    @Constraints.Min(10)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public Long id;
 
     @Constraints.Required
@@ -36,4 +36,15 @@ public class Pregunta extends Model {
     public String textoAyuda;
     
     public static Finder<Long, Pregunta> find = new Finder<Long, Pregunta>(Pregunta.class);
+
+    public static Map<String,String> preguntas() {
+        List<Pregunta> pregs = Pregunta.find.all();
+        LinkedHashMap<String,String> options = new LinkedHashMap<>();
+        for(Pregunta set: pregs) {
+            options.put(set.id.toString(), set.texto.toString());
+        }
+        return options;
+    }
+
+
 }

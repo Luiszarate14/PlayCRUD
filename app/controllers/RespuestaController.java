@@ -4,9 +4,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.inject.Inject;
+import models.Pregunta;
 import play.data.Form;
 import play.mvc.*;
-import models.Pregunta;
+import models.Respuesta;
 import play.data.FormFactory;
 import play.data.validation.Constraints;
 import views.html.*;
@@ -21,14 +22,24 @@ public class RespuestaController extends Controller {
     FormFactory formFactory;
 
     public Result crearRespuestaGet() {
-        Form<Pregunta> pregForm = formFactory.form(Pregunta.class);
-        return ok(crear.render("Formulario de pregunta",
-                pregForm,
-                routes.HomeController.listarPregunta()));
+        Form<Respuesta> respForm = formFactory.form(Respuesta.class);
+        return ok(crearRespuesta.render("Formulario de respunta",
+                respForm,
+                routes.RespuestaController.crearRespuestaPost()));
     }
-       
-   
-   
-
+    
+    public Result crearRespuestaPost() {
+        Form<Respuesta> respForm = formFactory.form(Respuesta.class).bindFromRequest();
+        if (respForm.hasErrors()) {
+            return badRequest(crearRespuesta.render("Encontramos errores",
+                    respForm, routes.RespuestaController.crearRespuestaPost()));
+        } else {
+            Respuesta resp = respForm.get();
+            resp.save();
+            respForm = formFactory.form(Respuesta.class);
+        }
+        return ok(crearRespuesta.render("Recepción de formulario correcto.", 
+                respForm, routes.RespuestaController.crearRespuestaPost()));
+    }
 
 }
