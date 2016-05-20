@@ -33,7 +33,6 @@ public class HomeController extends Controller {
 
     public Result crearPreguntaGet() {
         Form<Pregunta> pregForm = formFactory.form(Pregunta.class);
-
         return ok(crear.render("Formulario de pregunta",
                 pregForm,
                 routes.HomeController.listarPregunta()));
@@ -45,17 +44,7 @@ public class HomeController extends Controller {
             return badRequest(crear.render("Encontramos errores",
                     pregForm, routes.HomeController.index()));
         } else {
-            Map<String, String> values = pregForm.data();
-            System.out.println(values);
-            Pregunta preg = new Pregunta();
-            boolean requerida = false;
-            if (values.containsKey("requerida") && values.get("requerida").equalsIgnoreCase("true")) {
-                requerida = true;
-            }
-            preg.texto = values.get("texto");
-            preg.tipo = values.get("tipo");
-            preg.requerida = requerida;
-            preg.textoAyuda = values.get("textoAyuda");
+            Pregunta preg = pregForm.get();
             preg.save();
             pregForm = formFactory.form(Pregunta.class);
         }
@@ -87,7 +76,7 @@ public class HomeController extends Controller {
                     routes.HomeController.editarPreguntaPost(id)
             ));
         }
-
+        
         Pregunta preg = pregForm.get();
         instancia.texto = preg.texto;
         instancia.tipo = preg.tipo;

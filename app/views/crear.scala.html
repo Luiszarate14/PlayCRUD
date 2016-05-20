@@ -3,38 +3,50 @@
 
 @main(message) {
 
-    @form(postUrl, 'class -> "form") {
-
-      @if(searchForm.hasGlobalErrors) {
-          <div class="alert alert-danger">
+<div class="alert"> @message </div>
+@form(postUrl, 'class -> "form") {
+    @if(searchForm.hasGlobalErrors) {
+        <div class="alert alert-danger">
             @searchForm.globalError.message
-          </div>
-      }
+        </div>
+    }
 
-      <fieldset>
-          @inputText(
-            searchForm("texto"),
-            '_label -> "Texto de preguta",
-            '_help -> "required",
-            'class -> "form-control"
-          )
-          @textarea(searchForm("textoAyuda"),
-             '_help -> "Un poco de ayuda nunca es malo",
-            'class -> "form-control")
-          @inputText(searchForm("tipo"),
-            '_help -> "required",
-            'class -> "form-control"
-            )
-          
-          @input(searchForm("requerida")) { (id, name, value, args) =>
-                <input type="checkbox" name="@name" id="@id" @toHtmlArgs(args)>
-            }
+    <fieldset>
 
-      </fieldset>
+        <div class="row">
+            <div class="col-md-4"> @inputText(
+                searchForm("texto"),
+                '_label -> "Texto de pregunta",
+                '_help -> "required",
+                'class -> "form-control"
+                )</div>
+            <div class="col-md-4">
+                @textarea(searchForm("textoAyuda"),
+                '_help -> "Un poco de ayuda nunca es malo",
+                'class -> "form-control")
+            </div>
 
-      <div class="form-actions text-center">
-          <input type="submit" class="btn btn-success" value="guardar") >
-      </div>
-  }
+        </div>
 
+
+
+        @inputText(searchForm("tipo"),
+        '_help -> "required",
+        'class -> "form-control"
+        )
+
+        @input(searchForm("requerida")) { (id, name, value, args) =>
+
+        <select name="@name" id="@id" @toHtmlArgs(args)>
+                <option value="true" selected>Sí</option>
+            <option value="false">No</option>
+        </select>
+        }
+
+    </fieldset>
+
+    <div class="form-actions text-center">
+        <input type="submit" class="btn btn-success" value="guardar") >
+    </div>
+    }
 }
