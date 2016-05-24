@@ -1,0 +1,33 @@
+@(loginForm: Form[Application.Login])
+
+@import helper._
+
+
+@form(routes.Application.authenticate(), 'class -> "form") {
+
+    @if(loginForm.hasGlobalErrors) {
+        <div class="alert alert-danger">
+            @loginForm.globalError.message
+        </div>
+    }
+    <fieldset>
+        @inputText(
+            loginForm("username"),
+            'placeholder -> "Usuario",
+            '_label -> null,
+            '_help -> "Requerido",
+            'class -> "form-control"
+        )
+        @inputPassword(
+            loginForm("password"),
+            '_label -> null,
+            'placeholder -> "password",
+            '_help -> "requerido",
+            'class -> "form-control "
+        )
+    </fieldset>
+
+    <div class="form-actions">
+        <input type="submit" class="btn btn-success pull-right" value="Ingresar">
+    </div>
+}

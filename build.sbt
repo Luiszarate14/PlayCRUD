@@ -11,5 +11,7 @@ routesGenerator := InjectedRoutesGenerator
 libraryDependencies ++= Seq(
   javaJdbc,
   cache,
-  javaWs
+  javaWs,
+  "org.mindrot" % "jbcrypt" % "0.3m"
 )
+

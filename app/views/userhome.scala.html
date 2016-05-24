@@ -1,0 +1,10 @@
+@(user: User)
+
+@main(user.username){
+
+<h2> Bienvenido @user.username </h2>
+
+<p> Su clave está encriptadad y es: @user.passwordHash</p>
+
+<a class="btn btn-success" href="@routes.Application.logout()"> Salir </a>
+}

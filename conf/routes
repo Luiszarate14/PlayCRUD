@@ -20,6 +20,19 @@ GET     /listarPreguntas           controllers.HomeController.listarPregunta()
 GET     /editarPregunta/:id        controllers.HomeController.editarPreguntaGet(id: Long)
 POST     /editarPregunta/:id       controllers.HomeController.editarPreguntaPost(id: Long)
 
+
+# Manejo de login de sesion
+
+GET     /ingreso                    controllers.Application.home()
+POST    /login                      controllers.Application.authenticate()
+GET     /logout                     controllers.Application.logout()
+
+# Creacion de usuarios
+
+GET     /signup                     controllers.Signup.create()
+POST    /signup                     controllers.Signup.save()
+
+
 #Eliminar 
 GET     /eliminarPregunta/:id       controllers.HomeController.EliminarPregunta(id: Long)
 # Map static resources from the /public folder to the /assets URL path
